@@ -30,6 +30,7 @@ h1 {
 }
 
 .table-responsive {
+    width: 100%;
     overflow-x: auto;
 }
 
@@ -101,6 +102,16 @@ tr:nth-child(even) {
         width: 100%;
         margin: 10px 0;
         font-size: 14px;
+    }
+
+    .table-responsive {
+        margin-top: 10px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        width: 100%;
     }
 
     th, td {
