@@ -4,9 +4,8 @@ let showPastSchedule = false;
 const remarks = {
     1: "基本原則：每日不多於2個Test及1個補課",
     2: "請留意14~19/11 之循環週日子調動",
-    3: "藍色highlight = CORE SUBJECT DRILLING",
-    4: "Core 1(WCP): R301 | Core 2(WYF): R302 | 6D(YKC): R303 | M1(LHJ): R304 | M2(KTY): R305",
-    5: "加油！！！撐住！！！"
+    3: "Core 1(WCP): R301 | Core 2(WYF): R302 | 6D(YKC): R303 | M1(LHJ): R304 | M2(KTY): R305",
+    4: "加油！！！撐住！！！"
 };
 
 // Fetch JSON data and initialize tables
