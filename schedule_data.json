@@ -1087,7 +1087,7 @@
         "Weekday": "3",
         "StarSymbol": "**",
         "StarWeekday": "**3",
-        "RemedialClass": "=@IF(G75=\"\"*1\"\",\"\"S6 Econ, X3 BIO/GEOG/VA\"\", G75=\"\"*3\"\", \"\"CHI\"\", G75=\"\"*4\"\", \"\"Math\"\", G75=\"\"**1\"\", \"\"S6 BAFS/CHEM\"\", RIGHT(G75)=\"\"2\"\", \"\"ENG\"\", G75=\"\"**3\"\", \"\"X2 ERS/HIST\"\", G75=\"\"**4\"\", \"\"X1 BIO/CHIST\"\", OR(F75=\"\"\"\", G75=\"\"5\"\"), \"\"Suppose冇補課\"\")",
+        "RemedialClass": "X2 ERS/HIST",
         "OddEven": "E5",
         "RemedialLocation": "R302/R303",
         "TestSelection": "Suppose冇Test",
