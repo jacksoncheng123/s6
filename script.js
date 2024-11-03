@@ -34,7 +34,9 @@ function parseDate(dateString) {
     const year = dateString.slice(0, 4);
     const month = dateString.slice(5, dateString.indexOf('月')) - 1;
     const day = dateString.slice(dateString.indexOf('月') + 1, dateString.indexOf('日'));
-    return new Date(year, month, day);
+    return new Date(Date.UTC(year, month, day));
+}
+
 }
 
 // Display full schedule, showing only future events by default
