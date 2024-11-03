@@ -1,61 +1,109 @@
-// Load the JSON data and initialize the table
+// Load schedule data from JSON file and display it in the table
+let scheduleData = [];
+let showPastSchedule = false;
+
+// Fetch JSON data and initialize tables
 fetch('schedule_data.json')
-  .then(response => response.json())
-  .then(data => {
-    window.scheduleData = data;
-    displayTable(data);
-    displayUpcoming(data);
-  })
-  .catch(error => console.error("Error loading schedule data:", error));
+    .then(response => response.json())
+    .then(data => {
+        scheduleData = data;
+        initializeFilters(scheduleData);
+        displayFullSchedule(scheduleData);
+        displayUpcomingSchedule(scheduleData);
+    });
 
-// Display table function
-function displayTable(data) {
-  const tableBody = document.getElementById('scheduleTable');
-  tableBody.innerHTML = ''; // Clear existing table data
-
-  data.forEach(item => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${item.Date}</td>
-      <td>${item.Cycle}</td>
-      <td>${item.Day}</td>
-      <td>${item.Weekday}</td>
-      <td>${item.RemedialClass}</td>
-      <td>${item.OddEven}</td>
-      <td>${item.RemedialLocation}</td>
-      <td>${item.TestSelection}</td>
-      <td>${item.Notes || ''}</td>
-    `;
-    tableBody.appendChild(row);
-  });
+// Initialize dropdown filter options
+function initializeFilters(data) {
+    const subjectFilter = document.getElementById('subject-filter');
+    const dateFilter = document.getElementById('date-filter');
+    
+    const subjects = [...new Set(data.map(item => item.RemedialClass))];
+    const dates = [...new Set(data.map(item => item.Date))].sort();
+    
+    subjects.forEach(subject => {
+        const option = document.createElement('option');
+        option.value = subject;
+        option.textContent = subject;
+        subjectFilter.appendChild(option);
+    });
+    
+    dates.forEach(date => {
+        const option = document.createElement('option');
+        option.value = date;
+        option.textContent = date;
+        dateFilter.appendChild(option);
+    });
 }
 
-// Display upcoming schedule (next 5 entries)
-function displayUpcoming(data) {
-  const upcomingList = document.getElementById('upcomingList');
-  upcomingList.innerHTML = '';
+// Display full schedule, showing only future events by default
+function displayFullSchedule(data) {
+    const tableBody = document.getElementById('schedule-table').querySelector('tbody');
+    tableBody.innerHTML = '';
+    const today = new Date().setHours(0, 0, 0, 0);
 
-  // Filter upcoming dates
-  const today = new Date();
-  const upcoming = data.filter(item => new Date(item.Date) >= today).slice(0, 5);
+    data.forEach(item => {
+        const itemDate = new Date(item.Date).setHours(0, 0, 0, 0);
+        if (!showPastSchedule && itemDate < today) return;
 
-  upcoming.forEach(item => {
-    const listItem = document.createElement('li');
-    listItem.textContent = `${item.Date}: ${item.TestSelection || 'No test scheduled'}`;
-    upcomingList.appendChild(listItem);
-  });
+        const row = `<tr>
+            <td>${item.Date}</td>
+            <td>${item.Cycle}</td>
+            <td>${item.Day}</td>
+            <td>${item.Weekday}</td>
+            <td>${item.RemedialClass}</td>
+            <td>${item.RemedialLocation}</td>
+            <td>${item.Notes}</td>
+        </tr>`;
+        tableBody.innerHTML += row;
+    });
 }
 
-// Apply filters function
+// Display upcoming schedule for the next 7 days
+function displayUpcomingSchedule(data) {
+    const tableBody = document.getElementById('upcoming-table').querySelector('tbody');
+    tableBody.innerHTML = '';
+    const today = new Date();
+    const upcomingData = data.filter(item => {
+        const itemDate = new Date(item.Date);
+        const timeDiff = itemDate - today;
+        return timeDiff > 0 && timeDiff <= 7 * 24 * 60 * 60 * 1000;
+    });
+
+    upcomingData.forEach(item => {
+        const row = `<tr>
+            <td>${item.Date}</td>
+            <td>${item.RemedialClass}</td>
+            <td>${item.RemedialLocation}</td>
+            <td>${item.Notes}</td>
+        </tr>`;
+        tableBody.innerHTML += row;
+    });
+}
+
+// Filter schedule based on user input
 function applyFilters() {
-  const dateFilter = document.getElementById('dateFilter').value;
-  const subjectFilter = document.getElementById('subjectFilter').value.toLowerCase();
+    const subjectFilter = document.getElementById('subject-filter').value;
+    const dateFilter = document.getElementById('date-filter').value;
+    
+    const filteredData = scheduleData.filter(item => {
+        const subjectMatch = subjectFilter ? item.RemedialClass === subjectFilter : true;
+        const dateMatch = dateFilter ? item.Date === dateFilter : true;
+        return subjectMatch && dateMatch;
+    });
+    
+    displayFullSchedule(filteredData);
+}
 
-  const filteredData = window.scheduleData.filter(item => {
-    const matchesDate = !dateFilter || item.Date.startsWith(dateFilter);
-    const matchesSubject = !subjectFilter || (item.RemedialClass && item.RemedialClass.toLowerCase().includes(subjectFilter));
-    return matchesDate && matchesSubject;
-  });
+// Clear filters and show future schedule only
+function clearFilters() {
+    document.getElementById('subject-filter').value = '';
+    document.getElementById('date-filter').value = '';
+    showPastSchedule = false;
+    displayFullSchedule(scheduleData);
+}
 
-  displayTable(filteredData);
+// Toggle past schedule view
+function togglePastSchedule() {
+    showPastSchedule = !showPastSchedule;
+    displayFullSchedule(scheduleData);
 }
