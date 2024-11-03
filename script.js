@@ -14,6 +14,7 @@ fetch('schedule_data.json')
 // Initialize dropdown filter options
 function initializeFilters(data) {
     const subjectFilter = document.getElementById('subject-filter');
+    const dateFilter = document.getElementById('date-filter');
     
     // Clear existing options
     subjectFilter.innerHTML = '';
@@ -34,8 +35,9 @@ function initializeFilters(data) {
         subjectFilter.appendChild(option);
     });
 
-    // Add event listener to auto-apply filter on selection change
+    // Add event listeners to auto-apply filter on selection change
     subjectFilter.addEventListener('change', applyFilters);
+    dateFilter.addEventListener('input', applyFilters);
 }
 
 // Convert date from "2024年9月10日" to "YYYY-MM-DD"
