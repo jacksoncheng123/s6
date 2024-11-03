@@ -39,7 +39,7 @@
         "StarWeekday": "*4",
         "RemedialClass": "Math",
         "OddEven": "O3",
-        "RemedialLocation": "參考備註#3,
+        "RemedialLocation": "參考備註#3",
         "TestSelection": "CHI",
         "Notes": "",
         "": ""
@@ -174,7 +174,7 @@
         "StarWeekday": "*4",
         "RemedialClass": "Math",
         "OddEven": "E6",
-        "RemedialLocation": "參考備註#3,
+        "RemedialLocation": "參考備註#3",
         "TestSelection": "ENG",
         "Notes": "",
         "": ""
@@ -279,7 +279,7 @@
         "StarWeekday": "*4",
         "RemedialClass": "Math",
         "OddEven": "O6",
-        "RemedialLocation": "參考備註#3,
+        "RemedialLocation": "參考備註#3",
         "TestSelection": "ERS/HIST",
         "Notes": "",
         "": ""
@@ -774,7 +774,7 @@
         "StarWeekday": "*4",
         "RemedialClass": "Math",
         "OddEven": "O3",
-        "RemedialLocation": "參考備註#3,
+        "RemedialLocation": "參考備註#3",
         "TestSelection": "CHI",
         "Notes": "",
         "": ""
@@ -924,7 +924,7 @@
         "StarWeekday": "*4",
         "RemedialClass": "Math",
         "OddEven": "O1",
-        "RemedialLocation": "參考備註#3,
+        "RemedialLocation": "參考備註#3",
         "TestSelection": "PHY",
         "Notes": "",
         "": ""
@@ -1029,7 +1029,7 @@
         "StarWeekday": "*4",
         "RemedialClass": "Math",
         "OddEven": "E1",
-        "RemedialLocation": "參考備註#3,
+        "RemedialLocation": "參考備註#3",
         "TestSelection": "CHIST",
         "Notes": "",
         "": ""
