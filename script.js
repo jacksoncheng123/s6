@@ -17,16 +17,21 @@ function initializeFilters(data) {
     const subjectFilter = document.getElementById('subject-filter');
     const dateFilter = document.getElementById('date-filter');
     
+    // Clear existing options
+    subjectFilter.innerHTML = '<option value="">All Subjects</option>';
+    dateFilter.innerHTML = '<option value="">All Dates</option>';
+
+    // Populate unique subjects and dates for dropdowns
     const subjects = [...new Set(data.map(item => item.RemedialClass))];
     const dates = [...new Set(data.map(item => item.Date))].sort();
-    
+
     subjects.forEach(subject => {
         const option = document.createElement('option');
         option.value = subject;
         option.textContent = subject;
         subjectFilter.appendChild(option);
     });
-    
+
     dates.forEach(date => {
         const option = document.createElement('option');
         option.value = date;
@@ -58,17 +63,23 @@ function displayFullSchedule(data) {
     });
 }
 
-// Display upcoming schedule for the next 7 days
+// Display the next available schedule date only
 function displayUpcomingSchedule(data) {
     const tableBody = document.getElementById('upcoming-table').querySelector('tbody');
     tableBody.innerHTML = '';
     const today = new Date();
-    const upcomingData = data.filter(item => {
-        const itemDate = new Date(item.Date);
-        const timeDiff = itemDate - today;
-        return timeDiff > 0 && timeDiff <= 7 * 24 * 60 * 60 * 1000;
-    });
+    let nextAvailableDate = null;
 
+    for (const item of data) {
+        const itemDate = new Date(item.Date);
+        if (itemDate > today) {
+            nextAvailableDate = itemDate;
+            break;
+        }
+    }
+
+    const upcomingData = data.filter(item => new Date(item.Date).getTime() === nextAvailableDate?.getTime());
+    
     upcomingData.forEach(item => {
         const row = `<tr>
             <td>${item.Date}</td>
@@ -80,7 +91,7 @@ function displayUpcomingSchedule(data) {
     });
 }
 
-// Filter schedule based on user input
+// Filter schedule based on user input for full schedule only
 function applyFilters() {
     const subjectFilter = document.getElementById('subject-filter').value;
     const dateFilter = document.getElementById('date-filter').value;
@@ -94,7 +105,7 @@ function applyFilters() {
     displayFullSchedule(filteredData);
 }
 
-// Clear filters and show future schedule only
+// Clear filters and reset to default future-only view in the full schedule
 function clearFilters() {
     document.getElementById('subject-filter').value = '';
     document.getElementById('date-filter').value = '';
@@ -102,7 +113,7 @@ function clearFilters() {
     displayFullSchedule(scheduleData);
 }
 
-// Toggle past schedule view
+// Toggle past schedule view for full schedule only
 function togglePastSchedule() {
     showPastSchedule = !showPastSchedule;
     displayFullSchedule(scheduleData);
