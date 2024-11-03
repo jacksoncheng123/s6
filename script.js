@@ -15,8 +15,8 @@ fetch('schedule_data.json')
     .then(data => {
         scheduleData = data;
         initializeFilters(scheduleData);
+        displayUpcomingSchedule(scheduleData); // Display upcoming schedule first
         displayFullSchedule(scheduleData);
-        displayUpcomingSchedule(scheduleData);
     });
 
 // Initialize dropdown filter options
@@ -141,9 +141,9 @@ function showRemark(remarkNumber) {
 
 // Show all remarks
 function showAllRemarks() {
-    let allRemarks = "";
-    for (const key in remarks) {
-        allRemarks += `${key}: ${remarks[key]}\n`;
+    let allRemarks = '';
+    for (let key in remarks) {
+        allRemarks += `Remark #${key}: ${remarks[key]}\n`;
     }
     alert(allRemarks);
 }
@@ -155,4 +155,23 @@ function applyFilters() {
     
     const filteredData = scheduleData.filter(item => {
         const subjectMatch = subjectFilter ? item.RemedialClass === subjectFilter : true;
-        const dateMatch
+        const dateMatch = dateFilter ? parseDate(item.Date).toISOString().slice(0, 10) === dateFilter : true;
+        return subjectMatch && dateMatch;
+    });
+    
+    displayFullSchedule(filteredData);
+}
+
+// Clear filters and reset to default future-only view in the full schedule
+function clearFilters() {
+    document.getElementById('subject-filter').value = '';
+    document.getElementById('date-filter').value = '';
+    showPastSchedule = false;
+    displayFullSchedule(scheduleData);
+}
+
+// Toggle past schedule view for full schedule only
+function togglePastSchedule() {
+    showPastSchedule = !showPastSchedule;
+    displayFullSchedule(scheduleData);
+}
