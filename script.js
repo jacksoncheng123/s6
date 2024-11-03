@@ -15,28 +15,18 @@ fetch('schedule_data.json')
 // Initialize dropdown filter options
 function initializeFilters(data) {
     const subjectFilter = document.getElementById('subject-filter');
-    const dateFilter = document.getElementById('date-filter');
     
     // Clear existing options
-    subjectFilter.innerHTML = '<option value="">All Subjects</option>';
-    dateFilter.innerHTML = '<option value="">All Dates</option>';
+    subjectFilter.innerHTML = '';
 
-    // Populate unique subjects and dates for dropdowns
+    // Populate unique subjects for dropdown
     const subjects = [...new Set(data.map(item => item.RemedialClass))];
-    const dates = [...new Set(data.map(item => item.Date))].sort();
 
     subjects.forEach(subject => {
         const option = document.createElement('option');
         option.value = subject;
         option.textContent = subject;
         subjectFilter.appendChild(option);
-    });
-
-    dates.forEach(date => {
-        const option = document.createElement('option');
-        option.value = date;
-        option.textContent = date;
-        dateFilter.appendChild(option);
     });
 }
 
@@ -70,6 +60,7 @@ function displayUpcomingSchedule(data) {
     const today = new Date();
     let nextAvailableDate = null;
 
+    // Find the next available date
     for (const item of data) {
         const itemDate = new Date(item.Date);
         if (itemDate > today) {
@@ -78,17 +69,22 @@ function displayUpcomingSchedule(data) {
         }
     }
 
+    // Filter data for the next available date and display it
     const upcomingData = data.filter(item => new Date(item.Date).getTime() === nextAvailableDate?.getTime());
     
-    upcomingData.forEach(item => {
-        const row = `<tr>
-            <td>${item.Date}</td>
-            <td>${item.RemedialClass}</td>
-            <td>${item.RemedialLocation}</td>
-            <td>${item.Notes}</td>
-        </tr>`;
-        tableBody.innerHTML += row;
-    });
+    if (upcomingData.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="4">No upcoming schedule available.</td></tr>`;
+    } else {
+        upcomingData.forEach(item => {
+            const row = `<tr>
+                <td>${item.Date}</td>
+                <td>${item.RemedialClass}</td>
+                <td>${item.RemedialLocation}</td>
+                <td>${item.Notes}</td>
+            </tr>`;
+            tableBody.innerHTML += row;
+        });
+    }
 }
 
 // Filter schedule based on user input for full schedule only
