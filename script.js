@@ -53,14 +53,17 @@ function displayFullSchedule(data) {
     const tableBody = document.getElementById('schedule-table').querySelector('tbody');
     tableBody.innerHTML = '';
     const today = new Date().setHours(0, 0, 0, 0);
+    const currentYear = new Date().getFullYear();
 
     data.forEach(item => {
         const itemDate = parseDate(item.Date).setHours(0, 0, 0, 0);
         if (!showPastSchedule && itemDate < today) return;
 
+        const date = parseDate(item.Date);
+        const displayDate = date.getFullYear() === currentYear ? `${date.getMonth() + 1}月${date.getDate()}日` : item.Date;
+
         const row = `<tr>
-            <td>${item.Date}</td>
-            <td>${item.Cycle}</td>
+            <td>${displayDate}</td>
             <td>${item.Day}</td>
             <td>${item.Weekday}</td>
             <td>${item.RemedialClass}</td>
@@ -93,9 +96,13 @@ function displayUpcomingSchedule(data) {
     if (upcomingData.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="4">No upcoming schedule available.</td></tr>`;
     } else {
+        const currentYear = new Date().getFullYear();
         upcomingData.forEach(item => {
+            const date = parseDate(item.Date);
+            const displayDate = date.getFullYear() === currentYear ? `${date.getMonth() + 1}月${date.getDate()}日` : item.Date;
+
             const row = `<tr>
-                <td>${item.Date}</td>
+                <td>${displayDate}</td>
                 <td>${item.RemedialClass}</td>
                 <td>${item.RemedialLocation}</td>
                 <td>${item.Notes}</td>
