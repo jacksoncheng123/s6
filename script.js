@@ -29,7 +29,7 @@ function applyFilters() {
     
     const filteredData = scheduleData.filter(item => {
         const subjectMatch = subjectFilter ? item.RemedialClass === subjectFilter : true;
-        const dateMatch = dateFilter ? parseDate(item.Date).toISOString().slice(0, 10) === dateFilter : true;
+        const dateMatch = dateFilter ? parseDate(item.Date).toISOString().slice(0, 10) === new Date(dateFilter).toISOString().slice(0, 10) : true;
         return subjectMatch && dateMatch;
     });
     
