@@ -53,8 +53,8 @@ tr:nth-child(even) {
 
 /* Clickable remarks link */
 .remarks-link {
-    color: #5991f1;
-    text-decoration: underline;
+    color: #5991f1 !important;
+    text-decoration: underline !important;
     cursor: pointer;
 }
 
