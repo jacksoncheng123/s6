@@ -2,20 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Schedule</h1>
+
     <div class="filter-section">
-        <label for="subject-filter">Subject:</label>
+        <label for="subject-filter">Filter by Subject:</label>
         <select id="subject-filter"></select>
-        <label for="date-filter">Date:</label>
+        
+        <label for="date-filter">Filter by Date:</label>
         <input type="date" id="date-filter">
+
         <button onclick="clearFilters()">Clear Filters</button>
-        <button onclick="togglePastSchedule()">Toggle Past Schedule</button>
         <button onclick="showAllRemarks()">Show All Remarks</button>
     </div>
+
     <div class="upcoming-section">
         <h2>Upcoming Schedule</h2>
         <table id="upcoming-table">
@@ -23,13 +27,14 @@
                 <tr>
                     <th>Date</th>
                     <th>Remedial Class</th>
-                    <th>Location</th>
+                    <th>Remedial Location</th>
                     <th>Notes</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
     </div>
+
     <div class="schedule-section">
         <h2>Full Schedule</h2>
         <table id="schedule-table">
@@ -39,13 +44,14 @@
                     <th>Day</th>
                     <th>Weekday</th>
                     <th>Remedial Class</th>
-                    <th>Location</th>
+                    <th>Remedial Location</th>
                     <th>Notes</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
