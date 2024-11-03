@@ -50,6 +50,13 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
+/* Add this to your existing CSS */
+.remarks-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 /* Dark mode styles */
 @media (prefers-color-scheme: dark) {
     body {
