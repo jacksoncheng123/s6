@@ -33,6 +33,9 @@ function initializeFilters(data) {
         option.textContent = subject;
         subjectFilter.appendChild(option);
     });
+
+    // Add event listener to auto-apply filter on selection change
+    subjectFilter.addEventListener('change', applyFilters);
 }
 
 // Convert date from "2024年9月10日" to "YYYY-MM-DD"
