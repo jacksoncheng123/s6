@@ -95,7 +95,7 @@ tr:nth-child(even) {
 }
 
 /* Responsive styles */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .filter-section label,
     .filter-section select,
     .filter-section input,
