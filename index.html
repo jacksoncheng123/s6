@@ -2,42 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>After School Schedule</title>
+    <title>Schedule</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>After School Class Schedule</h1>
-
-    <!-- Filter Section -->
+    <h1>Schedule</h1>
     <div class="filter-section">
         <label for="subject-filter">Subject:</label>
         <select id="subject-filter"></select>
-        
         <label for="date-filter">Date:</label>
         <input type="date" id="date-filter">
-        
         <button onclick="clearFilters()">Clear Filters</button>
         <button onclick="togglePastSchedule()">Toggle Past Schedule</button>
+        <button onclick="showAllRemarks()">Show All Remarks</button>
     </div>
-    
-    <!-- Upcoming Schedule Section -->
-    <div class="upcoming-section">
-        <h2>Upcoming Schedule</h2>
-        <table id="upcoming-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Subject</th>
-                    <th>Location</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
-
-    <!-- Full Schedule Section -->
     <div class="schedule-section">
         <h2>Full Schedule</h2>
         <table id="schedule-table">
@@ -46,7 +24,7 @@
                     <th>Date</th>
                     <th>Day</th>
                     <th>Weekday</th>
-                    <th>Subject</th>
+                    <th>Remedial Class</th>
                     <th>Location</th>
                     <th>Notes</th>
                 </tr>
@@ -54,7 +32,20 @@
             <tbody></tbody>
         </table>
     </div>
-
+    <div class="upcoming-section">
+        <h2>Upcoming Schedule</h2>
+        <table id="upcoming-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Remedial Class</th>
+                    <th>Location</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
