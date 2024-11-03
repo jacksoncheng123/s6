@@ -38,7 +38,7 @@ table {
 th, td {
     padding: 12px;
     text-align: center;
-    border: 1px solid #3e444c; /* Updated border color */
+    border: 1px solid #ddd;
 }
 
 th {
