@@ -1,6 +1,14 @@
 let scheduleData = [];
 let showPastSchedule = false;
 
+const remarks = {
+    1: "基本原則：每日不多於2個Test及1個補課",
+    2: "請留意14~19/11 之循環週日子調動",
+    3: "藍色highlight = CORE SUBJECT DRILLING",
+    4: "Core 1(WCP): R301 | Core 2(WYF): R302 | 6D(YKC): R303 | M1(LHJ): R304 | M2(KTY): R305",
+    5: "加油！！！撐住！！！"
+};
+
 // Fetch JSON data and initialize tables
 fetch('schedule_data.json')
     .then(response => response.json())
@@ -62,12 +70,19 @@ function displayFullSchedule(data) {
         const date = parseDate(item.Date);
         const displayDate = date.getFullYear() === currentYear ? `${date.getMonth() + 1}月${date.getDate()}日` : item.Date;
 
+        let location = item.RemedialLocation;
+        const match = location.match(/備註#(\d+)/);
+        if (match) {
+            const remarkNumber = match[1];
+            location = location.replace(`備註#${remarkNumber}`, `<span class="remarks-link" onclick="showRemark(${remarkNumber})">備註#${remarkNumber}</span>`);
+        }
+
         const row = `<tr>
             <td>${displayDate}</td>
             <td>${item.Day}</td>
             <td>${item.Weekday}</td>
             <td>${item.RemedialClass}</td>
-            <td>${item.RemedialLocation}</td>
+            <td>${location}</td>
             <td>${item.Notes}</td>
         </tr>`;
         tableBody.innerHTML += row;
@@ -101,15 +116,27 @@ function displayUpcomingSchedule(data) {
             const date = parseDate(item.Date);
             const displayDate = date.getFullYear() === currentYear ? `${date.getMonth() + 1}月${date.getDate()}日` : item.Date;
 
+            let location = item.RemedialLocation;
+            const match = location.match(/備註#(\d+)/);
+            if (match) {
+                const remarkNumber = match[1];
+                location = location.replace(`備註#${remarkNumber}`, `<span class="remarks-link" onclick="showRemark(${remarkNumber})">備註#${remarkNumber}</span>`);
+            }
+
             const row = `<tr>
                 <td>${displayDate}</td>
                 <td>${item.RemedialClass}</td>
-                <td>${item.RemedialLocation}</td>
+                <td>${location}</td>
                 <td>${item.Notes}</td>
             </tr>`;
             tableBody.innerHTML += row;
         });
     }
+}
+
+// Show the corresponding remark based on the location
+function showRemark(remarkNumber) {
+    alert(remarks[remarkNumber]);
 }
 
 // Filter schedule based on user input for full schedule only
