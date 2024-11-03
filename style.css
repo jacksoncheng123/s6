@@ -32,6 +32,7 @@ h1 {
 .table-responsive {
     width: 100%;
     overflow-x: auto;
+    max-width: 100%; /* Ensure it matches the phone screen */
 }
 
 table {
@@ -106,6 +107,7 @@ tr:nth-child(even) {
 
     .table-responsive {
         margin-top: 10px;
+        max-width: 100%; /* Ensure it matches the phone screen */
     }
 
     table {
