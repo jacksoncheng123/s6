@@ -37,8 +37,6 @@ function parseDate(dateString) {
     return new Date(Date.UTC(year, month, day));
 }
 
-}
-
 // Display full schedule, showing only future events by default
 function displayFullSchedule(data) {
     const tableBody = document.getElementById('schedule-table').querySelector('tbody');
