@@ -38,7 +38,7 @@ table {
 th, td {
     padding: 12px;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid #3e444c; /* Updated border color */
 }
 
 th {
@@ -54,12 +54,17 @@ tr:nth-child(even) {
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #121212;
-        color: #0E1116;
+        color: #ffffff;
     }
     
     th {
         background-color: #333;
-        color: #0E1116;
+        color: #ffffff;
+        border: 1px solid #3e444c; /* Updated border color for dark mode */
+    }
+    
+    td {
+        border: 1px solid #3e444c; /* Updated border color for dark mode */
     }
     
     tr:nth-child(even) {
@@ -71,6 +76,6 @@ tr:nth-child(even) {
     }
 
     table {
-        box-shadow: 0 4px 8px rgba(255, 255, 0, 0.1);
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
     }
 }
