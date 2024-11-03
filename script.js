@@ -18,6 +18,12 @@ function initializeFilters(data) {
     // Clear existing options
     subjectFilter.innerHTML = '';
 
+    // Add an option for "All Subjects" or "No Filter"
+    const allOption = document.createElement('option');
+    allOption.value = '';
+    allOption.textContent = 'All Subjects';
+    subjectFilter.appendChild(allOption);
+
     // Populate unique subjects for dropdown
     const subjects = [...new Set(data.map(item => item.RemedialClass))];
 
