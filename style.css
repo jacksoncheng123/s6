@@ -1,0 +1,32 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+#filters, #upcoming {
+  margin: 20px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+#upcoming h2 {
+  margin-top: 0;
+}
