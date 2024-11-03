@@ -1,4 +1,3 @@
-// Load schedule data from JSON file and display it in the table
 let scheduleData = [];
 let showPastSchedule = false;
 
@@ -30,6 +29,14 @@ function initializeFilters(data) {
     });
 }
 
+// Convert date from "2024年9月10日" to "YYYY-MM-DD"
+function parseDate(dateString) {
+    const year = dateString.slice(0, 4);
+    const month = dateString.slice(5, dateString.indexOf('月')) - 1;
+    const day = dateString.slice(dateString.indexOf('月') + 1, dateString.indexOf('日'));
+    return new Date(year, month, day);
+}
+
 // Display full schedule, showing only future events by default
 function displayFullSchedule(data) {
     const tableBody = document.getElementById('schedule-table').querySelector('tbody');
@@ -37,7 +44,7 @@ function displayFullSchedule(data) {
     const today = new Date().setHours(0, 0, 0, 0);
 
     data.forEach(item => {
-        const itemDate = new Date(item.Date).setHours(0, 0, 0, 0);
+        const itemDate = parseDate(item.Date).setHours(0, 0, 0, 0);
         if (!showPastSchedule && itemDate < today) return;
 
         const row = `<tr>
@@ -62,7 +69,7 @@ function displayUpcomingSchedule(data) {
 
     // Find the next available date
     for (const item of data) {
-        const itemDate = new Date(item.Date);
+        const itemDate = parseDate(item.Date);
         if (itemDate > today) {
             nextAvailableDate = itemDate;
             break;
@@ -70,7 +77,7 @@ function displayUpcomingSchedule(data) {
     }
 
     // Filter data for the next available date and display it
-    const upcomingData = data.filter(item => new Date(item.Date).getTime() === nextAvailableDate?.getTime());
+    const upcomingData = data.filter(item => parseDate(item.Date).getTime() === nextAvailableDate?.getTime());
     
     if (upcomingData.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="4">No upcoming schedule available.</td></tr>`;
@@ -94,7 +101,7 @@ function applyFilters() {
     
     const filteredData = scheduleData.filter(item => {
         const subjectMatch = subjectFilter ? item.RemedialClass === subjectFilter : true;
-        const dateMatch = dateFilter ? item.Date === dateFilter : true;
+        const dateMatch = dateFilter ? parseDate(item.Date).toISOString().slice(0, 10) === dateFilter : true;
         return subjectMatch && dateMatch;
     });
     
