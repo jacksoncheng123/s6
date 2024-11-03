@@ -32,6 +32,7 @@ h1 {
 .table-responsive {
     width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
 }
 
 table {
@@ -39,6 +40,7 @@ table {
     border-collapse: collapse;
     margin-top: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 600px; /* Ensure horizontal scrolling on small screens */
 }
 
 th, td {
@@ -107,14 +109,11 @@ tr:nth-child(even) {
     .table-responsive {
         margin-top: 10px;
         max-width: 100%; /* Ensure it matches the phone screen */
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
     }
 
     table {
         display: block;
         width: 100%;
-        min-width: 600px; /* Set a min-width to make it scrollable */
     }
 
     th, td {
