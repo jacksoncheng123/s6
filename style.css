@@ -41,30 +41,12 @@ table {
     margin-top: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     min-width: 600px; /* Ensure horizontal scrolling on small screens */
-    table-layout: fixed; /* Fixes layout for more consistent column widths */
 }
 
 th, td {
     padding: 12px;
     text-align: center;
     border: 1px solid #ddd;
-}
-
-/* Ensure no borders and no padding for empty cells to remove "wire" effect */
-td:empty {
-    border: none;
-    padding: 0;
-}
-
-/* Set a fixed width for columns to reduce shifting */
-th:nth-child(1), td:nth-child(1) {
-    width: 20%;
-}
-th:nth-child(2), td:nth-child(2) {
-    width: 20%;
-}
-th:nth-child(3), td:nth-child(3) {
-    width: 60%;
 }
 
 th {
