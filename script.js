@@ -88,30 +88,36 @@ function displayFullSchedule(data) {
     });
 }
 
-// Display the next available schedule date only
+// Display today's schedule and the next available schedule date only
 function displayUpcomingSchedule(data) {
     const tableBody = document.getElementById('upcoming-table').querySelector('tbody');
     tableBody.innerHTML = '';
-    const today = new Date();
+    const today = new Date().setHours(0, 0, 0, 0);
     let nextAvailableDate = null;
+
+    // Filter data for today
+    const todayData = data.filter(item => {
+        const itemDate = parseDate(item.Date).setHours(0, 0, 0, 0);
+        return itemDate === today;
+    });
 
     // Find the next available date
     for (const item of data) {
-        const itemDate = parseDate(item.Date);
+        const itemDate = parseDate(item.Date).setHours(0, 0, 0, 0);
         if (itemDate > today) {
             nextAvailableDate = itemDate;
             break;
         }
     }
 
-    // Filter data for the next available date and display it
-    const upcomingData = data.filter(item => parseDate(item.Date).getTime() === nextAvailableDate?.getTime());
-    
-    if (upcomingData.length === 0) {
+    // Combine today's data and the next available date
+    const combinedData = [...todayData, ...data.filter(item => parseDate(item.Date).getTime() === nextAvailableDate)];
+
+    if (combinedData.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="4">No upcoming schedule available.</td></tr>`;
     } else {
         const currentYear = new Date().getFullYear();
-        upcomingData.forEach(item => {
+        combinedData.forEach(item => {
             const date = parseDate(item.Date);
             const displayDate = date.getFullYear() === currentYear ? `${date.getMonth() + 1}月${date.getDate()}日` : item.Date;
 
@@ -174,3 +180,4 @@ function togglePastSchedule() {
     showPastSchedule = !showPastSchedule;
     displayFullSchedule(scheduleData);
 }
+
