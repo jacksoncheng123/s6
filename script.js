@@ -110,8 +110,14 @@ function displayUpcomingSchedule(data) {
         }
     }
 
+    // Filter data for the next available date
+    const nextData = data.filter(item => {
+        const itemDate = parseDate(item.Date).setHours(0, 0, 0, 0);
+        return itemDate === nextAvailableDate;
+    });
+
     // Combine today's data and the next available date
-    const combinedData = [...todayData, ...data.filter(item => parseDate(item.Date).getTime() === nextAvailableDate)];
+    const combinedData = [...todayData, ...nextData];
 
     if (combinedData.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="4">No upcoming schedule available.</td></tr>`;
@@ -180,4 +186,3 @@ function togglePastSchedule() {
     showPastSchedule = !showPastSchedule;
     displayFullSchedule(scheduleData);
 }
-
