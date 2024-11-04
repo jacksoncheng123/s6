@@ -64,7 +64,7 @@ function displayFullSchedule(data) {
     const today = new Date().setHours(0, 0, 0, 0);
     const currentYear = new Date().getFullYear();
 
-    data.forEach(item => {
+    data.forEach((item, index) => {
         const itemDate = parseDate(item.Date).setHours(0, 0, 0, 0);
         if (!showPastSchedule && itemDate < today) return;
 
@@ -85,7 +85,8 @@ function displayFullSchedule(data) {
             notes = notes.replace(`備註#${remarkNumber}`, `<span class="remarks-link" onclick="showRemark(${remarkNumber})">備註#${remarkNumber}</span>`);
         }
 
-        const row = `<tr>
+        const rowColor = (index % 2 === 0) ? '#f9f9f9' : '#f2f2f2';
+        const row = `<tr style="background-color: ${rowColor};">
             <td>${displayDate}</td>
             <td>${item.Day}</td>
             <td>${item.Weekday}</td>
@@ -132,7 +133,7 @@ function displayUpcomingSchedule(data) {
         tableBody.innerHTML = `<tr><td colspan="4">No upcoming schedule available.</td></tr>`;
     } else {
         const currentYear = new Date().getFullYear();
-        combinedData.forEach(item => {
+        combinedData.forEach((item, index) => {
             const date = parseDate(item.Date);
             const displayDate = date.getFullYear() === currentYear ? `${date.getMonth() + 1}月${date.getDate()}日` : item.Date;
 
@@ -150,7 +151,8 @@ function displayUpcomingSchedule(data) {
                 notes = notes.replace(`備註#${remarkNumber}`, `<span class="remarks-link" onclick="showRemark(${remarkNumber})">備註#${remarkNumber}</span>`);
             }
 
-            const row = `<tr>
+            const rowColor = (index % 2 === 0) ? '#f9f9f9' : '#f2f2f2';
+            const row = `<tr style="background-color: ${rowColor};">
                 <td>${displayDate}</td>
                 <td>${item.RemedialClass}</td>
                 <td>${location}</td>
