@@ -72,10 +72,17 @@ function displayFullSchedule(data) {
         const displayDate = date.getFullYear() === currentYear ? `${date.getMonth() + 1}月${date.getDate()}日` : item.Date;
 
         let location = item.RemedialLocation;
-        const match = location.match(/備註#(\d+)/);
-        if (match) {
-            const remarkNumber = match[1];
+        const locationMatch = location.match(/備註#(\d+)/);
+        if (locationMatch) {
+            const remarkNumber = locationMatch[1];
             location = location.replace(`備註#${remarkNumber}`, `<span class="remarks-link" onclick="showRemark(${remarkNumber})">備註#${remarkNumber}</span>`);
+        }
+
+        let notes = item.Notes;
+        const notesMatch = notes.match(/備註#(\d+)/);
+        if (notesMatch) {
+            const remarkNumber = notesMatch[1];
+            notes = notes.replace(`備註#${remarkNumber}`, `<span class="remarks-link" onclick="showRemark(${remarkNumber})">備註#${remarkNumber}</span>`);
         }
 
         const row = `<tr>
@@ -84,7 +91,7 @@ function displayFullSchedule(data) {
             <td>${item.Weekday}</td>
             <td>${item.RemedialClass}</td>
             <td>${location}</td>
-            <td>${item.Notes}</td>
+            <td>${notes}</td>
         </tr>`;
         tableBody.innerHTML += row;
     });
@@ -130,17 +137,24 @@ function displayUpcomingSchedule(data) {
             const displayDate = date.getFullYear() === currentYear ? `${date.getMonth() + 1}月${date.getDate()}日` : item.Date;
 
             let location = item.RemedialLocation;
-            const match = location.match(/備註#(\d+)/);
-            if (match) {
-                const remarkNumber = match[1];
+            const locationMatch = location.match(/備註#(\d+)/);
+            if (locationMatch) {
+                const remarkNumber = locationMatch[1];
                 location = location.replace(`備註#${remarkNumber}`, `<span class="remarks-link" onclick="showRemark(${remarkNumber})">備註#${remarkNumber}</span>`);
+            }
+
+            let notes = item.Notes;
+            const notesMatch = notes.match(/備註#(\d+)/);
+            if (notesMatch) {
+                const remarkNumber = notesMatch[1];
+                notes = notes.replace(`備註#${remarkNumber}`, `<span class="remarks-link" onclick="showRemark(${remarkNumber})">備註#${remarkNumber}</span>`);
             }
 
             const row = `<tr>
                 <td>${displayDate}</td>
                 <td>${item.RemedialClass}</td>
                 <td>${location}</td>
-                <td>${item.Notes}</td>
+                <td>${notes}</td>
             </tr>`;
             tableBody.innerHTML += row;
         });
