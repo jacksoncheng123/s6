@@ -49,6 +49,11 @@ th, td {
     border: 1px solid #ddd;
 }
 
+/* Ensure no borders for empty cells to remove "wire" effect */
+td:empty {
+    border: none;
+}
+
 th {
     background-color: #4CAF50;
     color: white;
