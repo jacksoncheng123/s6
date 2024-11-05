@@ -735,6 +735,21 @@
         "": ""
     },
     {
+        "CycleDay": "",
+        "Date": "2024年11月25日",
+        "Cycle": "",
+        "Day": "",
+        "Weekday": "1",
+        "StarSymbol": "*",
+        "StarWeekday": "*2",
+        "RemedialClass": "Maths Paper 1+2 Drill",
+        "OddEven": "O1",
+        "RemedialLocation": "HALL",
+        "TestSelection": "",
+        "Notes": "",
+        "": ""
+    },
+    {
         "CycleDay": "0901",
         "Date": "2024年11月26日",
         "Cycle": "9",
