@@ -1091,7 +1091,7 @@
         "OddEven": "O1",
         "RemedialLocation": "",
         "TestSelection": "",
-        "Notes": "8:30-12:#0",
+        "Notes": "8:30-12:30",
         "": ""
     },
     {
@@ -1192,7 +1192,7 @@
         "Weekday": "6",
         "StarSymbol": "*",
         "StarWeekday": "*2",
-        "RemedialClass": "ICT Mck",
+        "RemedialClass": "ICT Mock",
         "OddEven": "O1",
         "RemedialLocation": "STPYC",
         "TestSelection": "",
