@@ -1336,6 +1336,21 @@
     },
     {
     "CycleDay": "",
+    "Date": "2025年1月17日",
+    "Cycle": "",
+    "Day": "",
+    "Weekday": "5",
+    "StarSymbol": "*",
+    "StarWeekday": "*5",
+    "RemedialClass": "PESS2(報到易)Test",
+    "OddEven": "",
+    "RemedialLocation": "Hall",
+    "TestSelection": "",
+    "Notes": "~10 minutes",
+    "": ""
+    },
+    {
+    "CycleDay": "",
     "Date": "2025年1月20日",
     "Cycle": "",
     "Day": "",
