@@ -3583,5 +3583,20 @@
         "TestSelection": "",
         "Notes": "",
         "": ""
+    },
+    {
+        "CycleDay": "Grad",
+        "Date": "2025年6月7日",
+        "Cycle": "",
+        "Day": "",
+        "Weekday": "6",
+        "StarSymbol": "",
+        "StarWeekday": "",
+        "RemedialClass": "Graduation Ceremony",
+        "OddEven": "",
+        "RemedialLocation": "Hall",
+        "TestSelection": "",
+        "Notes": "3:00 PM",
+        "": ""
     }
 ]
