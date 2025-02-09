@@ -1614,7 +1614,7 @@
     "StarWeekday": "*1",
     "RemedialClass": "Physics 1",
     "OddEven": "",
-    "RemedialLocation": "X1, X2: Hall",
+    "RemedialLocation": "X1, X2: 303",
     "TestSelection": "",
     "Notes": "08:30-11:00",
     "": ""
@@ -1629,7 +1629,7 @@
     "StarWeekday": "*1",
     "RemedialClass": "Physics 2",
     "OddEven": "",
-    "RemedialLocation": "X1, X2: Hall",
+    "RemedialLocation": "X1, X2: 303",
     "TestSelection": "",
     "Notes": "11:45-12:45",
     "": ""
