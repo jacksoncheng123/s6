@@ -1981,6 +1981,21 @@
     },
     {
         "CycleDay": "study leave",
+        "Date": "2025年2月25日",
+        "Cycle": "",
+        "Day": "",
+        "Weekday": 2,
+        "StarSymbol": "",
+        "StarWeekday": "",
+        "RemedialClass": "chi reading",
+        "OddEven": "",
+        "RemedialLocation": "Hall",
+        "TestSelection": "",
+        "Notes": "14:00-13:15",
+        "": ""
+    },
+    {
+        "CycleDay": "study leave",
         "Date": "2025年2月26日",
         "Cycle": "",
         "Day": "",
