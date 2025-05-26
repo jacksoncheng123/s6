@@ -3658,5 +3658,35 @@
         "TestSelection": "",
         "Notes": "3:00 PM",
         "": ""
+    },
+    {
+        "CycleDay": "Grad Din",
+        "Date": "2025年6月17日",
+        "Cycle": "",
+        "Day": "",
+        "Weekday": "2",
+        "StarSymbol": "",
+        "StarWeekday": "",
+        "RemedialClass": "Graduation Dinner",
+        "OddEven": "",
+        "RemedialLocation": "港島海逸君綽酒店",
+        "TestSelection": "",
+        "Notes": "19:00-22:00",
+        "": ""
+    },
+    {
+        "CycleDay": "DSE result",
+        "Date": "2025年6月17日",
+        "Cycle": "",
+        "Day": "",
+        "Weekday": "3",
+        "StarSymbol": "",
+        "StarWeekday": "",
+        "RemedialClass": "DSE result release",
+        "OddEven": "",
+        "RemedialLocation": "",
+        "TestSelection": "",
+        "Notes": "08:30",
+        "": ""
     }
 ]
